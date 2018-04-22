@@ -12,13 +12,10 @@ function Settings(root, settings) {
             "rgba(255,156,91,1)",
             "rgba(245,99,74,1)",
             "rgba(237,48,60,1)",
-            "rgba(59,129,131,1)"
         ],
     };
 
     return {
         settings: Object.assign(defaults, settings),
     };
-
-    // "div.meta > div.col-80.big-number-label > h4"
 }

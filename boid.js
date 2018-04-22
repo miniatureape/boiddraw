@@ -140,7 +140,7 @@ function BoidRenderer(boid, context, paint) {
         },
 
         simulatePressureWithLineWidth: function(boid) {
-            return   1.1 * (boid.vel.mag() / boid.maxSpeed);
+            return   2.2 * (boid.vel.mag() / boid.maxSpeed);
         },
         simulatePressureWithStroke: function(paint, boid) {
             parts = colorSplit(paint);
