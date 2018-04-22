@@ -116,7 +116,6 @@ function Boid(path, pos, vel, acc, maxSpeed, maxForce, ageLimit) {
             this.vel.limit(this.maxSpeed);
             this.pos.add(this.vel);
             this.acc.mult(0);
-            console.log(this.age);
             if (this.age > this.ageLimit) return true;
         }
 
