@@ -140,11 +140,11 @@ function BoidRenderer(boid, context, paint) {
         },
 
         simulatePressureWithLineWidth: function(boid) {
-            return   2.2 * (boid.vel.mag() / boid.maxSpeed);
+            return   1.7 * (boid.vel.mag() / boid.maxSpeed);
         },
         simulatePressureWithStroke: function(paint, boid) {
             parts = colorSplit(paint);
-            parts[3] = .6 * ((boid.vel.mag()) / boid.maxSpeed);
+            parts[3] = .4 * ((boid.vel.mag()) / boid.maxSpeed);
             return colorJoin(parts);
         },
     };
