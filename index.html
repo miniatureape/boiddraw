@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Boid Drawing</title>
+    <style>
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+            overscroll-behavior: none;
+        }
+n
+        #menu {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        canvas {
+            position: absolute;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <canvas id="rendering"></canvas>
+        <canvas id="drawing"></canvas>
+    </div>
+    <script src="vector2d.js"></script>
+    <script src="util.js"></script>
+    <script src="settings.js"></script>
+    <script src="stylus.js"></script>
+    <script src="path.js"></script>
+    <script src="pathrenderer.js"></script>
+    <script src="canvas.js"></script>
+    <script src="boid.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
