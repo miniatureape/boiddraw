@@ -29,7 +29,7 @@ function main() {
         let flock = Flock(
             renderingContext,
             newPath, 
-            settings.settings
+            settings
         );
         window.runnables = window.runnables.concat(flock);
     });

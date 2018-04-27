@@ -1,10 +1,4 @@
-function Boid(path, pos, vel, acc, maxSpeed, maxForce, ageLimit) {
-
-    const DAMPING = 10;
-    const PATH_WIDTH = 10;
-    const PREDICTION_LENGTH = 50;
-    const MAX_SPEED = 5;
-    const MAX_FORCE = 2;
+function Boid(path, pos, vel, acc, settings) {
 
     return {
 
@@ -13,14 +7,15 @@ function Boid(path, pos, vel, acc, maxSpeed, maxForce, ageLimit) {
         pos: pos || new Vector2d(0,0),
         acc: acc || new Vector2d(0,0),
         vel: vel || new Vector2d(0,0),
-        ageLimit: ageLimit,
         age: 0,
         lastpos: null,
 
-        maxSpeed: maxSpeed || MAX_SPEED,
-        maxForce: maxForce || MAX_FORCE,
-
-        size: 10, 
+        ageLimit: settings.get('ageLimit'),
+        pathWidth: settings.get('pathWidth'),
+        maxSpeed: settings.get('maxSpeed') + (Math.random() * 6),
+        maxForce: settings.get('maxForce'),
+        predictionLength: settings.get('predictionLength'),
+        damping: settings.get('damping'),
 
         follow: function() {
 
@@ -30,7 +25,7 @@ function Boid(path, pos, vel, acc, maxSpeed, maxForce, ageLimit) {
             let prediction = this.vel.get();
 
             prediction.normalize();
-            prediction.mult(PREDICTION_LENGTH);
+            prediction.mult(this.predictionLength);
 
             let predictedPos = Vector2d.add(this.pos, prediction);
             let record = Infinity
@@ -65,7 +60,7 @@ function Boid(path, pos, vel, acc, maxSpeed, maxForce, ageLimit) {
                 dir.mult(10);
             }
             
-            if (record > PATH_WIDTH) {
+            if (record > this.pathWidth) {
                 target.add(dir);
                 this.seek(target);
             }
@@ -81,7 +76,7 @@ function Boid(path, pos, vel, acc, maxSpeed, maxForce, ageLimit) {
 
                 desired.normalize();
 
-                if (slowdown && (d < DAMPING)) {
+                if (slowdown && (d < this.damping)) {
                     desired.mult(this.maxSpeed * (desiredMag / DAMPING));
                 } else {
                     desired.mult(this.maxSpeed);
@@ -144,7 +139,7 @@ function BoidRenderer(boid, context, paint) {
         },
         simulatePressureWithStroke: function(paint, boid) {
             parts = colorSplit(paint);
-            parts[3] = .4 * ((boid.vel.mag()) / boid.maxSpeed);
+            parts[3] = Math.max(.1, .4 * ((boid.vel.mag()) / boid.maxSpeed));
             return colorJoin(parts);
         },
     };
@@ -158,7 +153,7 @@ function Flock(context, path, settings) {
     let first = points[0];
     let second = points[0];
 
-    for (let i = 0; i < settings.numboids; i++) {
+    for (let i = 0; i < settings.get('numboids'); i++) {
         let start = Vector2d.add(first, Vector2d.random(10));
         let vel = Vector2d.sub(second, first);
         let boid = Boid(
@@ -166,11 +161,9 @@ function Flock(context, path, settings) {
             start, 
             vel,
             null,
-            settings.maxSpeed + Math.random() * SPEED_MULTIPLIER,
-            settings.maxForce,
-            500,
+            settings
         );
-        let paint = settings.pallete[i % settings.pallete.length];
+        let paint = settings.get('pallete')[i % settings.get('pallete').length];
         let boidRenderer = BoidRenderer(boid, context, paint);
         flock.push(boidRenderer);
     }
