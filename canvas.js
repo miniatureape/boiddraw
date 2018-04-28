@@ -14,6 +14,13 @@ function Canvas(context) {
         context: context,
         canvas: context.canvas,
 
+        fill: function(color) {
+            this.context.save();
+            this.context.fillStyle = color;
+            this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
+            this.context.restore();
+        },
+
         resize: function(width, height) {
             this.context.canvas.setAttribute('width', width);
             this.context.canvas.setAttribute('height', height);

@@ -49,7 +49,6 @@ function Settings() {
             return settings[key].value;
         },
         set: function(key, value) {
-            console.log('was', settings[key]['value'], 'will be', value)
             settings[key]['value'] = parseInt(value, 10);
         }
     };
@@ -74,11 +73,11 @@ function SettingsRenderer(root, settings) {
 
     let s = {
         render: function() {
-            console.log('all settings', settings.all());
             root.innerHTML = "";
             Object.keys(settings.all()).forEach(function(k) {
                 root.appendChild(renderProperty(k, settings.getRaw(k)));
             });
+            root.appendChild(renderSaveButton());
         }
     }
 
@@ -86,10 +85,22 @@ function SettingsRenderer(root, settings) {
         let input = e.target;
         let key = input.getAttribute('data-key');
         let value = input.value;
-        console.log('key', key, 'set to', value, parseInt(value));
         settings.set(key, value);
         s.render();
     });
 
     s.render();
 }
+
+function save() {
+    document.getElementById('');
+    console.log('saving');
+}
+
+function renderSaveButton() {
+    let button = document.createElement('span');
+    button.setAttribute('id', 'save-btn');
+    button.innerHTML = "Save";
+    return button;
+}
+

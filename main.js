@@ -7,10 +7,6 @@ function main() {
     window.settings = Settings();
     window.settingsRenderer = SettingsRenderer(document.getElementById('settings-ui'), settings);
 
-    document.querySelector('#controls-toggle').addEventListener('click', function(e) {
-        e.target.parentElement.classList.toggle('visible')
-    })
-
     window.runnables = [];
 
     let drawingContext = document.getElementById('drawing').getContext('2d');
@@ -21,6 +17,8 @@ function main() {
 
     window.renderingCanvas = Canvas(renderingContext);
     window.renderingCanvas.resize(window.innerWidth, window.innerHeight);
+    window.renderingCanvas.fill('black');
+
 
     let path = Path();
     let pathRenderer = PathRenderer(path, drawingContext);
@@ -30,7 +28,6 @@ function main() {
     window.runnables.push(drawingCanvas);
     window.runnables.push(pathRenderer);
     window.drawingCanvas.bindEventsToStylus(stylus);
-
     stylus.onResults(function(newPath) {
         let flock = Flock(
             renderingContext,
@@ -39,6 +36,12 @@ function main() {
         );
         window.runnables = window.runnables.concat(flock);
     });
+
+    window.controls = Controls(
+        document.getElementById('controls'),
+        renderingContext
+    );
+
 
     run(0);
 }
