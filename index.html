@@ -25,16 +25,29 @@
             position: absolute;
         }
 
+        #controls {
+            position: absolute;
+                color: white;
+        }
+
+        #settings-ui {
+            display: none;
+        }
+        
+        .visible #settings-ui {
+            display: block;
+        }
+
     </style>
 </head>
 <body>
     <div id="app">
-        <div id="controls">
-            <span>settings</span>
-            <form id="settings-ui"></form>
-        </div>
         <canvas id="rendering"></canvas>
         <canvas id="drawing"></canvas>
+        <div id="controls">
+            <span id="controls-toggle">settings</span>
+            <form id="settings-ui"></form>
+        </div>
     </div>
     <script src="vector2d.js"></script>
     <script src="util.js"></script>

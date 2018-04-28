@@ -5,6 +5,12 @@ const DEBUG = true;
 function main() {
 
     window.settings = Settings();
+    window.settingsRenderer = SettingsRenderer(document.getElementById('settings-ui'), settings);
+
+    document.querySelector('#controls-toggle').addEventListener('click', function(e) {
+        e.target.parentElement.classList.toggle('visible')
+    })
+
     window.runnables = [];
 
     let drawingContext = document.getElementById('drawing').getContext('2d');

@@ -117,7 +117,7 @@ function Boid(path, pos, vel, acc, settings) {
     }
 }
 
-function BoidRenderer(boid, context, paint) {
+function BoidRenderer(boid, context, paint, size) {
     return {
         run: function(debug) {
             let result = boid.run(debug);
@@ -135,7 +135,7 @@ function BoidRenderer(boid, context, paint) {
         },
 
         simulatePressureWithLineWidth: function(boid) {
-            return   1.7 * (boid.vel.mag() / boid.maxSpeed);
+            return   size * (boid.vel.mag() / boid.maxSpeed);
         },
         simulatePressureWithStroke: function(paint, boid) {
             parts = colorSplit(paint);
@@ -164,7 +164,7 @@ function Flock(context, path, settings) {
             settings
         );
         let paint = settings.get('pallete')[i % settings.get('pallete').length];
-        let boidRenderer = BoidRenderer(boid, context, paint);
+        let boidRenderer = BoidRenderer(boid, context, paint, settings.get('boidSize'));
         flock.push(boidRenderer);
     }
     return flock;
