@@ -6,7 +6,7 @@ function Settings() {
     let settings = {
         numboids: {multiplier: .1, value: 50},
         maxSpeed: {multiplier: .12, value: 50},
-        maxForce: {multiplier: .08, value: 50},
+        maxForce: {multiplier: .02, value: 50},
         ageLimit: {multiplier: 10, value: 50},
         predictionLength: {multiplier: 1, value: 50},
         pathWidth: {multiplier: .2, value: 50},
