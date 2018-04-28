@@ -6,7 +6,7 @@ function Stylus(path) {
 
         drawing: false,
 
-        start: function(v) {
+        start: function() {
             this.drawing = true;
         },
 

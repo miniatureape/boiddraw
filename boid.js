@@ -61,7 +61,7 @@ function Boid(path, pos, vel, acc, settings) {
             }
             
             if (record > this.pathWidth) {
-                target.add(dir);
+                target && target.add(dir);
                 this.seek(target);
             }
         },
@@ -135,7 +135,7 @@ function BoidRenderer(boid, context, paint, size) {
         },
 
         simulatePressureWithLineWidth: function(boid) {
-            return   size * (boid.vel.mag() / boid.maxSpeed);
+            return  size * (boid.vel.mag() / boid.maxSpeed);
         },
         simulatePressureWithStroke: function(paint, boid) {
             parts = colorSplit(paint);
@@ -151,7 +151,7 @@ function Flock(context, path, settings) {
     let flock = [];
     let points = path.points;
     let first = points[0];
-    let second = points[0];
+    let second = points[1];
 
     for (let i = 0; i < settings.get('numboids'); i++) {
         let start = Vector2d.add(first, Vector2d.random(10));

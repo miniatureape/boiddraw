@@ -23,7 +23,7 @@ function main() {
     let path = Path();
     let pathRenderer = PathRenderer(path, drawingContext);
 
-    let stylus = Stylus(path);
+    window.stylus = Stylus(path);
 
     window.runnables.push(drawingCanvas);
     window.runnables.push(pathRenderer);
@@ -59,5 +59,24 @@ function run(ts) {
     dorun();
     raf(run);
 }
+
+function demo() {
+    console.log(demo);
+    let radius = Math.min(window.innerWidth, window.innerHeight) / 3;
+    let center = new Vector2d(window.innerWidth / 2, window.innerHeight / 2);
+    stylus.start();
+    for (let angle = 0; angle < (Math.PI * 2); angle = angle + .15) {
+        stylus.move(Vector2d.add(center, new Vector2d(Math.sin(angle) * radius, Math.cos(angle) * radius)));
+    }
+    stylus.end();
+}
+
+console.log('There is an object called stylus');
+console.log('You can draw with it using a simple api');
+console.log('stylus.start()');
+console.log('stylus.move(new Vector2d(10, 10))');
+console.log('stylus.move(new Vector2d(500, 500))');
+console.log('stylus.end()');
+console.log('type demo() to see.');
 
 main();
