@@ -74,7 +74,7 @@ function SettingsRenderer(root, settings) {
 
     let s = {
         render: function() {
-            root.innerHTML = "";
+            root.innerHTML = "<div id='instructions'>Drag on the screen to draw</div>";
             Object.keys(settings.all()).forEach(function(k) {
                 root.appendChild(renderProperty(k, settings.getRaw(k)));
             });
