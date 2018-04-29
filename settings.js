@@ -66,6 +66,7 @@ function SettingsRenderer(root, settings) {
         let label = document.createElement('label');
         label.innerHTML = key;
         let wrapper = document.createElement('div');
+        wrapper.classList.add('setting');
         wrapper.appendChild(label);
         wrapper.appendChild(rangeEl);
         return wrapper;

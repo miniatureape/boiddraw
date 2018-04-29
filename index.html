@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116494031-2"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -13,13 +14,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Boid Drawing</title>
     <style>
-
         body, html {
             background: black;
-            width: 100%;
-            height: 100%;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
             overflow: hidden;
-            position: relative;
+            position: absolute;
             overscroll-behavior: none;
         }
 
@@ -35,7 +37,17 @@
 
         #controls {
             position: absolute;
-                color: white;
+            color: white;
+            font-family: helvetica, sans-serif;
+            font-size: 12px;
+        }
+
+        label {
+            padding-right: 7px;
+        }
+
+        #controls-toggle {
+            font-size: 24px;
         }
 
         #settings-ui {
@@ -46,6 +58,19 @@
             display: block;
         }
 
+        .setting {
+            margin: 10px 0;
+        }
+
+        #save-btn {
+            display: block;
+            padding: 10px;
+            border: 1px solid #fefefe;
+            border-radius: 3px;
+            text-align: center;
+        }
+
+
     </style>
 </head>
 <body>
@@ -53,7 +78,7 @@
         <canvas id="rendering"></canvas>
         <canvas id="drawing"></canvas>
         <div id="controls">
-            <span id="controls-toggle">settings</span>
+            <i id="controls-toggle" class="fas fa-bars"></i>
             <form id="settings-ui"></form>
         </div>
     </div>
